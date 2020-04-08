@@ -75,6 +75,7 @@
                 android:layout_marginBottom="32dp"
                 android:tint="#ffffff"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_prompt"
                 app:layout_constraintStart_toStartOf="@+id/tv_prompt"
                 app:srcCompat="@mipmap/heart_uf" />
 
@@ -86,6 +87,7 @@
                 android:tint="#ffffff"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/tv_prompt"
+                app:layout_constraintStart_toEndOf="@+id/tv_prompt"
                 app:srcCompat="@mipmap/refresh" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
