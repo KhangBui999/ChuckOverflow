@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">ChuckOverflow</string>
     <string name="app_subtitle">Chuck Norris for Programmers!</string>
-    <string name="daily">Daily</string>
+    <string name="home">Home</string>
     <string name="saved">Saved</string>
     <string name="settings">Settings</string>
     <string name="today">Did You Know...</string>
+    <string name="saved_title">Your Saved Quotes</string>
 </resources>

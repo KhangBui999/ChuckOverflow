@@ -1,29 +1,46 @@
 package com.example.chuckoverflow.Entities;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Entity(tableName = "joke")
 public class Joke {
 
+    @Ignore
     @SerializedName("categories")
     @Expose
-    private List<String> categories = null;
+    private List<String> categories;
+    @Ignore
     @SerializedName("created_at")
     @Expose
     private String createdAt;
+    @Ignore
     @SerializedName("icon_url")
     @Expose
     private String iconUrl;
+    @PrimaryKey
+    @NonNull
     @SerializedName("id")
     @Expose
     private String id;
+    @ColumnInfo(name = "date")
+    @NonNull
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
+    @Ignore
     @SerializedName("url")
     @Expose
     private String url;
+    @ColumnInfo
+    @NonNull
     @SerializedName("value")
     @Expose
     private String value;
@@ -35,16 +52,6 @@ public class Joke {
     public Joke() {
     }
 
-    /**
-     *
-     * @param createdAt
-     * @param categories
-     * @param iconUrl
-     * @param id
-     * @param value
-     * @param url
-     * @param updatedAt
-     */
     public Joke(List<String> categories, String createdAt, String iconUrl, String id, String updatedAt, String url, String value) {
         super();
         this.categories = categories;
