@@ -9,8 +9,4 @@
         android:id="@+id/menu_saved"
         android:icon="@mipmap/bookmark"
         android:title="@string/saved" />
-    <item
-        android:id="@+id/menu_settings"
-        android:icon="@mipmap/settings"
-        android:title="@string/settings" />
 </menu>

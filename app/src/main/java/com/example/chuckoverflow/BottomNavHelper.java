@@ -42,10 +42,6 @@ public class BottomNavHelper {
                     launchListActivity();
                     item.setCheckable(true);
                     return true;
-                case R.id.menu_settings:
-                    launchSettingActivity();
-                    item.setCheckable(true);
-                    return true;
             }
             return false;
         });
@@ -68,8 +64,5 @@ public class BottomNavHelper {
             activity.finish();
         }
     }
-
-    private void launchSettingActivity() {
-
-    }
+    
 }

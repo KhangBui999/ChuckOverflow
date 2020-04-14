@@ -6,4 +6,6 @@
     <string name="settings">Settings</string>
     <string name="today">Did You Know...</string>
     <string name="saved_title">Your Saved Quotes</string>
+    <string name="clear">Clear All</string>
+    <string name="no_load">You have no saved quotes.</string>
 </resources>
