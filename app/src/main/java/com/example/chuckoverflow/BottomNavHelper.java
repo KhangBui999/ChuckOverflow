@@ -9,10 +9,14 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/**
+ * BottomNavHelper to enable the use of a BottomNavigationBar whilst being able to use
+ * Activity rather than Fragment. Allows a fluid navigation whilst allowing me to harness
+ * the benefits of using an Activity rather than a Fragment.
+ */
 public class BottomNavHelper {
 
     private Activity activity;
-    private MenuItem item;
 
     public BottomNavigationView getBottomNav(Activity activity, int itemId) {
         this.activity = activity;
@@ -39,7 +43,7 @@ public class BottomNavHelper {
                     item.setCheckable(true);
                     return true;
                 case R.id.menu_saved:
-                    launchListActivity();
+                    launchSavedActivity();
                     item.setCheckable(true);
                     return true;
             }
@@ -49,6 +53,9 @@ public class BottomNavHelper {
         return mNavMenu;
     }
 
+    /**
+     * Launches MainActivity
+     */
     private void launchMainActivity() {
         if(!(activity instanceof MainActivity)) {
             Intent intent = new Intent(activity, MainActivity.class);
@@ -57,12 +64,15 @@ public class BottomNavHelper {
         }
     }
 
-    private void launchListActivity() {
+    /**
+     * Launches SavedActivity
+     */
+    private void launchSavedActivity() {
         if(!(activity instanceof SavedActivity)) {
             Intent intent = new Intent(activity, SavedActivity.class);
             activity.startActivity(intent);
             activity.finish();
         }
     }
-    
+
 }

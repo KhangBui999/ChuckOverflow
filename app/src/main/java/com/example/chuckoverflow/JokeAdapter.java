@@ -16,6 +16,10 @@ import com.example.chuckoverflow.Entities.Joke;
 
 import java.util.List;
 
+/**
+ * Generic RecyclerView.Adapter class made for the Joke class
+ * Adapted from: INFS3634 Tutorials
+ */
 public class JokeAdapter extends RecyclerView.Adapter<JokeAdapter.JokeViewHolder> {
     private List<Joke> mJokes;
     private RecyclerViewClickListener mListener;

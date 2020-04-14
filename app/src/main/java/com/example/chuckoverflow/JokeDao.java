@@ -10,6 +10,9 @@ import com.example.chuckoverflow.Entities.Joke;
 
 import java.util.List;
 
+/**
+ * JokeDao class is used to handle CRUD functions for the JokeDatabase
+ */
 @Dao
 public interface JokeDao {
     @Query("SELECT * FROM joke ORDER BY date")

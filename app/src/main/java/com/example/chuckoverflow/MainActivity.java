@@ -39,8 +39,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Renders the bottom navigation bar
         BottomNavHelper bnh = new BottomNavHelper();
         mNavigation = bnh.getBottomNav(this, R.id.navigation);
+
+        //Builds the database
         db = Room.databaseBuilder(getApplicationContext(), JokeDatabase.class, "chuck-database").build();
 
         //Link XML elements to their respective Java class variables
@@ -53,9 +56,12 @@ public class MainActivity extends AppCompatActivity {
         //This sets an onClickListener for the refresh button
         mRefresh.setOnClickListener(v -> loadingQuote());
 
-        loadingQuote();
+        loadingQuote(); //renders quote
     }
 
+    /**
+     * Method that can be invoked to load the quote and update the UI according to result
+     */
     protected void loadingQuote() {
         mFavourite.setVisibility(View.INVISIBLE);
         mRefresh.setVisibility(View.INVISIBLE);
@@ -65,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
         new GetJokeTask().execute(); //execute API functions
     }
 
-    // Handles a GetJokeTask on an AsyncTask --> more reliable + code is more readable
+    /**
+     * Handles a GetJokeTask on an AsyncTask --> more reliable + code is more readable
+     */
     private class GetJokeTask extends AsyncTask<Void, Void, Joke> {
         @Override
         protected Joke doInBackground(Void... voids) {
@@ -111,50 +119,61 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //Handles a CheckJokeFavourited via an AsyncTask
+    /**
+     * Checks if a quote is saved in the database and changes the favourites icon accordingly
+     */
     private class CheckJokeFavourited extends AsyncTask<Void, Void,  List<Joke>> {
         @Override
         protected List<Joke> doInBackground(Void... voids) {
-            return db.jokeDao().checkJokeExist(joke.getId());
+            return db.jokeDao().checkJokeExist(joke.getId()); //returns results where saved IDs must equal to current id
         }
 
         @Override
         protected void onPostExecute(List<Joke> jokeList) {
             if(jokeList.size() == 0){
+                //if jokes i'snt saved yet
                 mFavourite.setImageResource(R.mipmap.heart_uf);
                 mFavourite.setOnClickListener(v -> new SaveJoke().execute());
             }
             else {
+                //if joke is saved
                 mFavourite.setImageResource(R.mipmap.heart_f);
                 mFavourite.setOnClickListener(v -> new DeleteJoke().execute());
             }
         }
     }
 
+    /**
+     * Saves a joke into the database
+     */
     private class SaveJoke extends AsyncTask<Void, Void, Joke> {
         @Override
         protected Joke doInBackground(Void... voids) {
-            db.jokeDao().insertJoke(joke);
+            db.jokeDao().insertJoke(joke); //adds joke into db
             return null;
         }
 
         @Override
         protected void onPostExecute(Joke joke) {
+            //Changes UI to allow user to unfavourite quote in case it was a mistake
             mFavourite.setImageResource(R.mipmap.heart_f);
             mFavourite.setOnClickListener(v -> new DeleteJoke().execute());
         }
     }
 
+    /**
+     * Deletes existing joke from the database
+     */
     private class DeleteJoke extends AsyncTask<Void, Void, Joke> {
         @Override
         protected Joke doInBackground(Void... voids) {
-            db.jokeDao().deleteJoke(joke);
-            new CheckJokeFavourited();
+            db.jokeDao().deleteJoke(joke); //deletes joke from Database
             return null;
         }
 
         @Override
         protected void onPostExecute(Joke joke) {
+            //Changes UI to allow user to favourite quote in case action was a mistake
             mFavourite.setImageResource(R.mipmap.heart_uf);
             mFavourite.setOnClickListener(v -> new SaveJoke().execute());
         }

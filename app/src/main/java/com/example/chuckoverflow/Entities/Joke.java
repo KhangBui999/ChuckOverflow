@@ -10,6 +10,9 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Joke class is used as template for API calls and as a Room Persistence Library schema
+ */
 @Entity(tableName = "joke")
 public class Joke {
 
