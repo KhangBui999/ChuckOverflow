@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
             //Try-catch is used as the try block executes code to retrieve an online API
             try {
                 //Retrofit is used to convert the Json class from the API
-                mFavourite.setOnClickListener(null);
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl("https://api.chucknorris.io/")
                         .addConverterFactory(GsonConverterFactory.create())
